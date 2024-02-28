@@ -20,10 +20,24 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "}\0";
 
 float vertices[] = {
-   -0.5, -0.5f, 0.0f,
-    0.5, -0.5f, 0.3f,
-    0.0,  0.1f, 0.0f
+    0.5f,  0.5f, 0.0f,
+    0.5f, -0.5f, 0.0f,
+   -0.5f, -0.5f, 0.0f,
+   -0.5f,  0.5f, 0.0f,
+   -0.7f, -0.6f, 0.0f,
+   -0.9f, -0.6f, 0.0f,
+   -0.8f,  0.6f, 0.0f,
+    0.7f, -0.6f, 0.0f,
+    0.9f, -0.6f, 0.0f,
+    0.8f,  0.6f, 0.0f
 };
+unsigned int indices[] = {
+    0, 1, 3,
+    1, 2, 3,
+    4, 5, 6,
+    7, 8, 9
+};
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
@@ -75,6 +89,12 @@ int main()
 
     unsigned int VBO;
     glGenBuffers(1, &VBO);
+    unsigned int EBO;
+    glGenBuffers(1, &EBO);
+    unsigned int VAO;
+    glGenVertexArrays(1, &VAO);
+
+
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
@@ -113,31 +133,17 @@ int main()
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
-        (void*)0);
-    glEnableVertexAttribArray(0);
-
-    // 0. copy our vertices array in a buffer for OpenGL to use
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    // 1. then set the vertex attributes pointers
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
-        (void*)0);
-    glEnableVertexAttribArray(0);
-    // 2. use our shader program when we want to render an object
-    glUseProgram(shaderProgram);
-    
-    unsigned int VAO;
-    glGenVertexArrays(1, &VAO);
-
+    // ..:: Initialization code :: ..
     // 1. bind Vertex Array Object
-        glBindVertexArray(VAO);
-    // 2. copy our vertices array in a buffer for OpenGL to use
+    glBindVertexArray(VAO);
+    // 2. copy our vertices array in a vertex buffer for OpenGL to use
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    // 3. then set our vertex attributes pointers
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
-        (void*)0);
+    // 3. copy our index array in a element buffer for OpenGL to use
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    // 4. then set the vertex attributes pointers
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
   
     
@@ -146,28 +152,19 @@ int main()
     while (!glfwWindowShouldClose(window)) 
     {
 
+        render_scene(window);
         process_input(window);
-
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
 
-        render_scene(window);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
         glfwSwapBuffers(window);
+
+
         glfwPollEvents();
     }
 
     glfwTerminate();
     return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

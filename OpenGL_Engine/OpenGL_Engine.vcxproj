@@ -31,6 +31,9 @@
     <ClInclude Include="..\libs\glfw-3.3.10.bin.WIN64\include\GLFW\glfw3.h" />
     <ClInclude Include="..\libs\glfw-3.3.10.bin.WIN64\include\GLFW\glfw3native.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OpenGL_Engine.rc" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -117,13 +120,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\moink\Documents\GitHub\cppEngineGL\OpenGL_Engine\libs\glad\include\;C:\Users\moink\Documents\GitHub\cppEngineGL\OpenGL_Engine\libs\glfw-3.3.10.bin.WIN64\include\GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\glfw-3.3.10.bin.WIN64\include\GLFW;$(SolutionDir)libs\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\moink\Documents\GitHub\cppEngineGL\OpenGL_Engine\libs\glfw-3.3.10.bin.WIN64\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\glfw-3.3.10.bin.WIN64\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>echo $(ProjectDir)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
