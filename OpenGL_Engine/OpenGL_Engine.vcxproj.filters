@@ -19,6 +19,9 @@
     <Filter Include="Libraries\glad">
       <UniqueIdentifier>{c92d3eda-7202-4e61-994b-f55f950a229c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shader">
+      <UniqueIdentifier>{05ad0e54-2f25-4d7a-826b-f79f722299bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\engine\OpenGL_Engine.cpp">
@@ -26,6 +29,9 @@
     </ClCompile>
     <ClCompile Include="..\libs\glad\src\glad.c">
       <Filter>Libraries\glad</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>Source Files\Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -46,10 +52,21 @@
     <ClInclude Include="..\libs\glad\include\KHR\khrplatform.h">
       <Filter>Libraries\glad</Filter>
     </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Source Files\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenGL_Engine.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\shaders\shader.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\shaders\shader.vs">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
