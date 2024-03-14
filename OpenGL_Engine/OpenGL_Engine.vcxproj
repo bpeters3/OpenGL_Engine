@@ -22,6 +22,7 @@
     <ClCompile Include="..\libs\glad\src\glad.c" />
     <ClCompile Include="..\src\engine\OpenGL_Engine.cpp" />
     <ClCompile Include="shader.cpp" />
+    <ClCompile Include="stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\libs\glfw-3.3.10.bin.WIN64\lib-vc2022\glfw3.lib" />
@@ -31,6 +32,8 @@
     <ClInclude Include="..\libs\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="..\libs\glfw-3.3.10.bin.WIN64\include\GLFW\glfw3.h" />
     <ClInclude Include="..\libs\glfw-3.3.10.bin.WIN64\include\GLFW\glfw3native.h" />
+    <ClInclude Include="..\libs\glm-1.0.1-light\glm\glm.hpp" />
+    <ClInclude Include="..\libs\stb_image\stb_image.h" />
     <ClInclude Include="shader.h" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +42,10 @@
   <ItemGroup>
     <None Include="..\shaders\shader.fs" />
     <None Include="..\shaders\shader.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\textures\awesomeface.png" />
+    <Image Include="..\textures\container.jpg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -126,7 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\glfw-3.3.10.bin.WIN64\include\GLFW;$(SolutionDir)OpenGL_Engine\;$(SolutionDir)libs\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\stb_image\;$(SolutionDir)libs\glfw-3.3.10.bin.WIN64\include\GLFW;$(SolutionDir)OpenGL_Engine\;$(SolutionDir)libs\glm-1.0.1-light\;$(SolutionDir)libs\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
