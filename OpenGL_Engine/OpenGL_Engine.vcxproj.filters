@@ -28,6 +28,9 @@
     <Filter Include="Libraries\glm">
       <UniqueIdentifier>{5d638f15-35b9-4dca-8914-5c25a7346bfe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Camera">
+      <UniqueIdentifier>{86428b12-3f06-4606-874b-e65ec8172f5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\engine\OpenGL_Engine.cpp">
@@ -41,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="stb_image.cpp">
       <Filter>Libraries\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.h">
+      <Filter>Source Files\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
